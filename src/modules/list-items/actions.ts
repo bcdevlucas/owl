@@ -4,7 +4,12 @@ import { ThunkAction } from 'redux-thunk';
 import * as types  from './types';
 
 function _getListItems () {
-    return []
+    const numberOfItems = 100
+    const items = Array.from(new Array(numberOfItems), (i) => ({
+        description: 'Testing testing 123',
+        order: i + 1
+    }));
+    return items
 }
 
 export type ListItemActions =
@@ -32,7 +37,8 @@ export const getListItems: ActionCreator<
         items: listItems
     } as types.ILoadListItemsAction;
 
-    return dispatch(loadListItemsAction);
+    const results = dispatch(loadListItemsAction);
+    return results;
   };
 };
 
@@ -55,7 +61,6 @@ export const removeListItem: ActionCreator<
         Promise<types.IRemoveListItemAction>, any, null, types.IRemoveListItemAction>
     > = (key) => {
   return async (dispatch: Dispatch) => {
-    debugger;
     const removeListItemAction: types.IRemoveListItemAction = {
         type: types.REMOVE_ITEM,
         key: key

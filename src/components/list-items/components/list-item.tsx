@@ -1,13 +1,15 @@
 import React from 'react'
 import { Box, Button, FormControl, TextField } from '@material-ui/core';
+import { IListItem } from '../../../modules/list-items/state'
 
 export interface ListItemProps {
+    item: IListItem;
     onRemove: () => void;
     onDragStart: () => void;
     onDragEnd: () => void;
 }
 
-export const ListItem = ({ onRemove = () => {} }: ListItemProps) => {
+export const ListItem = ({ onRemove = () => {}, item }: ListItemProps) => {
     return (
         <Box
             display="flex"
@@ -17,6 +19,7 @@ export const ListItem = ({ onRemove = () => {} }: ListItemProps) => {
                     variant="outlined"
                     size="small"
                     label="Description"
+                    value={item.description}
                     multiline
                     rowsMax={Infinity}
                 />

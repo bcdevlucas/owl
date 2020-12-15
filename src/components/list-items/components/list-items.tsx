@@ -8,22 +8,19 @@ export interface ListItemsProps {
     onRemoveItem: () => void;
     onDragItemStart: () => void;
     onDragItemEnd: () => void;
+    items: any[];
 }
 
 export const ListItems = ({
         onRemoveItem,
         onDragItemStart,
-        onDragItemEnd
+        onDragItemEnd,
+        items = []
     }: ListItemsProps) => {
-    const numberOfItems = 100
-    const items = Array.from(new Array(numberOfItems), (i) => ({
-        description: 'Testing testing 123',
-        order: i + 1
-    }));
-
-    const listItems = items.map((item) =>
-        <Box key={item.order} m={2}>
+    const listItems = items.map((item, idx) =>
+        <Box key={idx} m={2}>
             <ListItem
+                item={item}
                 onRemove={onRemoveItem}
                 onDragStart={onDragItemStart}
                 onDragEnd={onDragItemEnd}

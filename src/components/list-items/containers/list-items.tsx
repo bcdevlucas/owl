@@ -14,18 +14,39 @@ import {
 
 import { IListItem } from '../../../modules/list-items/state';
 
-export interface ListItemsContainerProps {
+
+
+export interface ListItemsContainerStateProps {
+    items: any[];
+}
+export interface ListItemsContainerDispatchProps {
     getListItems?: () => void;
     addListItem?: (item: IListItem) => void;
     removeListItem?: (key: string) => void;
     reorderListItem?: (key: string, order: any) => void;
 }
 
-export interface ListItemsContainerState {
+export interface ListItemsContainerProps
+    extends ListItemsContainerDispatchProps, ListItemsContainerStateProps {}
 
-}
 
-export class ListItemsContainer extends Component<ListItemsContainerProps, ListItemsContainerState> {
+export class ListItemsContainer extends Component<ListItemsContainerProps> {
+    static defaultProps = {
+        items: [],
+        getListItems: () => [],
+        addListItem: () => {},
+        removeListItem: (key: string) => {},
+        reorderListItem: (key: string, order: any) => {}
+    }
+
+    componentDidMount () {
+        const { getListItems } = this.props;
+        if (getListItems) {
+            // alert('Get items');
+            getListItems()
+        }
+    }
+
     handleRemoveItem = async () => {
         const { removeListItem } = this.props;
         if (removeListItem) {
@@ -41,8 +62,10 @@ export class ListItemsContainer extends Component<ListItemsContainerProps, ListI
     }
 
     render () {
+        const { items = [] } = this.props;
         return (
             <ListItems
+                items={items}
                 onRemoveItem={this.handleRemoveItem}
                 onDragItemStart={this.handleDragItemStart}
                 onDragItemEnd={this.handleDragItemEnd}
@@ -51,22 +74,16 @@ export class ListItemsContainer extends Component<ListItemsContainerProps, ListI
     }
 }
 
-export interface ListItemsContainerStateProps {}
-export interface ListItemsContainerDispatchProps {
-    getListItems: () => void;
-    addListItem: () => void;
-    removeListItem: () => void;
-    reorderListItem: () => void;
-}
-
 export default connect<
     ListItemsContainerStateProps,
     ListItemsContainerDispatchProps,
     ListItemsContainerProps,
     RootState>(
-    // eslint-disable-next-line no-empty-pattern
-    (state, {}) => {
-        return {};
+    (state) => {
+        const { listItems } = state
+        return {
+            items: listItems.items
+        };
     },
     {
         getListItems,
