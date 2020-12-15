@@ -12,6 +12,7 @@ export interface ListItemsContainerState {
 
 class ListItemsContainer extends Component<ListItemsContainerProps, ListItemsContainerState> {
     handleRemoveItem = async () => {
+        alert('Remove item');
     }
 
     handleDragItemStart = async () => {
@@ -20,7 +21,7 @@ class ListItemsContainer extends Component<ListItemsContainerProps, ListItemsCon
     handleDragItemEnd = async () => {
     }
 
-    render() {
+    render () {
         return (
             <ListItems
                 onRemoveItem={this.handleRemoveItem}

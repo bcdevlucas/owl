@@ -15,7 +15,7 @@ export const ListItems = ({
         onDragItemStart,
         onDragItemEnd
     }: ListItemsProps) => {
-    const numberOfItems = 50
+    const numberOfItems = 100
     const items = Array.from(new Array(numberOfItems), (i) => ({
         description: 'Testing testing 123',
         order: i + 1
@@ -26,7 +26,7 @@ export const ListItems = ({
             <ListItem
                 onRemove={onRemoveItem}
                 onDragStart={onDragItemStart}
-                onDragEnd={onDragItemStart}
+                onDragEnd={onDragItemEnd}
             />
         </Box>
     );
