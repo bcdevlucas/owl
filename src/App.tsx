@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import { Container, Box, TextField, Button, FormControl } from '@material-ui/core'
+import { Container, Box } from '@material-ui/core'
 
 import { ListItemsContainer as ListItems, ListControls } from './components/list-items'
 
-function handleGenerateItems() {}
-function handleReset() {}
+function handleGenerateItems() {
+    alert('Generate items');
+}
+function handleReset() {
+    alert('Reset');
+}
 
 class App extends Component {
     render () {

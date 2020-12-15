@@ -6,17 +6,29 @@ export interface ListControlsProps {
     onReset: () => void;
 }
 
-export const ListControls = ({}: ListControlsProps) => {
+export const ListControls = ({ onGenerateItems, onReset }: ListControlsProps) => {
     return (
         <>
             <FormControl>
                 <TextField id="item-count" variant="outlined" size="small" label="Number of Items" />
             </FormControl>
             <Box ml={1}>
-                <Button color="primary" variant="contained">Generate</Button>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={onGenerateItems}
+                >
+                    Generate
+                </Button>
             </Box>
             <Box ml={1}>
-                <Button color="secondary" variant="contained">Reset</Button>
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={onReset}
+                >
+                    Reset
+                </Button>
             </Box>
         </>
     )

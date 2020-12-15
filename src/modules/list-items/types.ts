@@ -23,12 +23,12 @@ export interface IAddListItemAction extends Action {
 
 export interface IRemoveListItemAction extends Action {
     type: typeof REMOVE_ITEM
-    item: IListItem
+    key: string
 }
 
 export interface IReorderListItemAction extends Action {
     type: typeof REORDER_ITEM
-    item: IListItem,
+    key: string,
     order: number
 }
 

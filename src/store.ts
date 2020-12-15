@@ -2,6 +2,11 @@ import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { default as thunk } from 'redux-thunk';
 
 import { listItemsReducer } from './modules/list-items/reducer'
+import { IListItemsState } from './modules/list-items/state'
+
+export interface RootState {
+    listItems: IListItemsState;
+}
 
 const reducers = {
     listItems: listItemsReducer

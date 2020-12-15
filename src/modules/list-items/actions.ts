@@ -53,11 +53,12 @@ export const addListItem: ActionCreator<
 export const removeListItem: ActionCreator<
     ThunkAction<
         Promise<types.IRemoveListItemAction>, any, null, types.IRemoveListItemAction>
-    > = ({ item }) => {
+    > = (key) => {
   return async (dispatch: Dispatch) => {
+    debugger;
     const removeListItemAction: types.IRemoveListItemAction = {
         type: types.REMOVE_ITEM,
-        item: item
+        key: key
     } as types.IRemoveListItemAction;
 
     return dispatch(removeListItemAction);
@@ -68,11 +69,12 @@ export const removeListItem: ActionCreator<
 export const reorderListItem: ActionCreator<
     ThunkAction<
         Promise<types.IReorderListItemAction>, any, null, types.IReorderListItemAction>
-    > = ({ item }) => {
+    > = ({ key, order }) => {
   return async (dispatch: Dispatch) => {
     const reorderListItemAction: types.IReorderListItemAction = {
         type: types.REORDER_ITEM,
-        item: item
+        key: key,
+        order: order,
     } as types.IReorderListItemAction;
 
     return dispatch(reorderListItemAction);
