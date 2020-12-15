@@ -1,24 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { Container, Box, TextField, Button } from '@material-ui/core'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Container maxWidth="sm">
+            <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" style={{ minHeight: '300px', border: '1px solid grey'}}>
+                <Box display="flex" style={{ background: "white" }}>
+                    <TextField label="Number of Items" variant="outlined" />
+                    <Button color="primary" variant="contained">Generate</Button>
+                    <Button color="secondary" variant="contained">Reset</Button>
+                </Box>
+                <Box display="flex" flexDirection="column">
+                    <Box display="flex">
+                        <TextField label="Number of Items" variant="outlined" />
+                        <Button color="secondary" variant="contained">x</Button>
+                    </Box>
+                    <Box display="flex">
+                        <TextField label="Number of Items" variant="outlined" />
+                        <Button color="secondary" variant="contained">x</Button>
+                    </Box>
+                    <Box display="flex">
+                        <TextField label="Number of Items" variant="outlined" />
+                        <Button color="secondary" variant="contained">x</Button>
+                    </Box>
+                    <Box display="flex">
+                        <TextField label="Number of Items" variant="outlined" />
+                        <Button color="secondary" variant="contained">x</Button>
+                    </Box>
+                </Box>
+
+            </Box>
+
+        </Container>
+
     </div>
   );
 }
