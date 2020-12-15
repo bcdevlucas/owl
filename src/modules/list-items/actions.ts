@@ -2,22 +2,29 @@ import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import * as types  from './types';
+import {IListItem} from "./state";
 
 function _getListItems () {
-    const numberOfItems = 100
-    const items = Array.from(new Array(numberOfItems), (i) => ({
-        description: 'Testing testing 123',
-        order: i + 1
-    }));
-    return items
+    const count = 5
+    const newItems: IListItem[] = []
+    for (let idx = 0; idx < count; idx++) {
+        newItems.push({
+            id: `item_${idx}`,
+            description: 'Testing testing 123',
+            order: idx
+        } as IListItem)
+    }
+    return newItems
 }
 
 export type ListItemActions =
     | types.IGetListItemsAction
     | types.ILoadListItemsAction
     | types.IAddListItemAction
+    | types.ICreateListItemsAction
     | types.IRemoveListItemAction
     | types.IReorderListItemAction
+    | types.IResetListItemsAction
 
 export const getListItems: ActionCreator<
     ThunkAction<
@@ -56,6 +63,20 @@ export const addListItem: ActionCreator<
   };
 };
 
+export const createListItems: ActionCreator<
+    ThunkAction<
+        Promise<types.ICreateListItemsAction>, any, null, types.ICreateListItemsAction>
+    > = (count) => {
+    return async (dispatch: Dispatch) => {
+        const createListItemsAction: types.ICreateListItemsAction = {
+            type: types.CREATE_ITEMS,
+            count: count,
+        } as types.ICreateListItemsAction;
+
+        return dispatch(createListItemsAction);
+    };
+};
+
 export const removeListItem: ActionCreator<
     ThunkAction<
         Promise<types.IRemoveListItemAction>, any, null, types.IRemoveListItemAction>
@@ -84,4 +105,17 @@ export const reorderListItem: ActionCreator<
 
     return dispatch(reorderListItemAction);
   };
+};
+
+export const resetListItems: ActionCreator<
+    ThunkAction<
+        Promise<types.IResetListItemsAction>, any, null, types.IResetListItemsAction>
+    > = () => {
+    return async (dispatch: Dispatch) => {
+        const resetListItemsAction: types.IResetListItemsAction = {
+            type: types.RESET_LIST,
+        } as types.IResetListItemsAction;
+
+        return dispatch(resetListItemsAction);
+    };
 };

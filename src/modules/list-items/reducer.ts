@@ -2,7 +2,8 @@ import { Reducer } from 'redux';
 
 import * as types from './types';
 import { ListItemActions } from './actions';
-import { IListItemsState, initialListItemsState } from './state';
+import { IListItem, IListItemsState, initialListItemsState } from './state';
+import {create} from "domain";
 
 export const listItemsReducer: Reducer<
   IListItemsState,
@@ -23,12 +24,35 @@ export const listItemsReducer: Reducer<
       };
     }
     case types.ADD_ITEM: {
+      const items = state.items;
+      const stateItems = items.concat([action.item]);
       return {
         ...state,
         // posting: true,
-        items: state.items.concat(
-          action.item
-        ),
+        items: stateItems
+      };
+    }
+    case types.CREATE_ITEMS: {
+      const items: IListItem[] = state.items;
+      const createCount = action.count;
+      const startIndex = (items.length > 0) ? Math.max(...items
+          .map(item => item.order)) + 1 : 0;
+      const maxIndex = startIndex + createCount;
+
+      const newItems: IListItem[] = [];
+
+      for (let idx = startIndex; idx < maxIndex; idx++) {
+        newItems.push({
+          id: `item_${idx}`,
+          description: '',
+          order: idx
+        } as IListItem);
+      }
+      const stateItems = items.concat(newItems);
+      return {
+        ...state,
+        // posting: true,
+        items: stateItems
       };
     }
     case types.REMOVE_ITEM: {
@@ -39,6 +63,12 @@ export const listItemsReducer: Reducer<
     case types.REORDER_ITEM: {
       return {
         ...state
+      };
+    }
+    case types.RESET_LIST: {
+      return {
+        ...state,
+        items: []
       };
     }
     default:

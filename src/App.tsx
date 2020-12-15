@@ -3,14 +3,10 @@ import './App.scss';
 
 import { Container, Box } from '@material-ui/core'
 
-import { ListItemsContainer as ListItems, ListControls } from './components/list-items'
-
-function handleGenerateItems() {
-    alert('Generate items');
-}
-function handleReset() {
-    alert('Reset');
-}
+import {
+    ListItemsContainer as ListItems,
+    ListControlsContainer as ListControls
+} from './components/list-items'
 
 class App extends Component {
     render () {
@@ -20,10 +16,7 @@ class App extends Component {
                     <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" style={{ minHeight: '300px', border: '1px solid grey'}}>
                         <Box display="flex" style={{ background: "white" }} width="100%">
                             <Box display="flex" m={2}>
-                                <ListControls
-                                    onGenerateItems={handleGenerateItems}
-                                    onReset={handleReset}
-                                />
+                                <ListControls />
                             </Box>
                         </Box>
                         <Box display="flex" flexDirection="column" width="100%">

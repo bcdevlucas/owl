@@ -1,7 +1,7 @@
 export interface IListItem {
     id: string;
     description: string;
-    order: string;
+    order: number;
 }
 
 export interface IListItemsState {

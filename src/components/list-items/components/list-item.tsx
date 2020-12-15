@@ -14,16 +14,29 @@ export const ListItem = ({ onRemove = () => {}, item }: ListItemProps) => {
         <Box
             display="flex"
             className="list-item">
-            <FormControl>
-                <TextField
-                    variant="outlined"
-                    size="small"
-                    label="Description"
-                    value={item.description}
-                    multiline
-                    rowsMax={Infinity}
-                />
-            </FormControl>
+            <Box width={"5rem"}>
+                <FormControl>
+                    <TextField
+                        variant="outlined"
+                        size="small"
+                        label="Order"
+                        value={item.order}
+
+                    />
+                </FormControl>
+            </Box>
+            <Box ml={1}>
+                <FormControl>
+                    <TextField
+                        variant="outlined"
+                        size="small"
+                        label="Description"
+                        value={item.description}
+                        multiline
+                        rowsMax={Infinity}
+                    />
+                </FormControl>
+            </Box>
             <Box ml={1}>
                 <Button
                     color="secondary"
