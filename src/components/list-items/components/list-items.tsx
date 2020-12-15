@@ -1,14 +1,20 @@
 import React from 'react'
-import {Box, List} from '@material-ui/core';
+import { Box, List } from '@material-ui/core';
 import './list-items.scss'
 
 import { ListItem } from './list-item';
 
 export interface ListItemsProps {
+    onRemoveItem: () => void;
+    onDragItemStart: () => void;
+    onDragItemEnd: () => void;
 }
 
-// eslint-disable-next-line no-empty-pattern
-export const ListItems = ({}: ListItemsProps) => {
+export const ListItems = ({
+        onRemoveItem,
+        onDragItemStart,
+        onDragItemEnd
+    }: ListItemsProps) => {
     const numberOfItems = 50
     const items = Array.from(new Array(numberOfItems), (i) => ({
         description: 'Testing testing 123',
@@ -16,7 +22,13 @@ export const ListItems = ({}: ListItemsProps) => {
     }));
 
     const listItems = items.map((item) =>
-        <Box key={item.order} m={2}><ListItem /></Box>
+        <Box key={item.order} m={2}>
+            <ListItem
+                onRemove={onRemoveItem}
+                onDragStart={onDragItemStart}
+                onDragEnd={onDragItemStart}
+            />
+        </Box>
     );
 
     return (

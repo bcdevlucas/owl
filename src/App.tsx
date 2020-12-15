@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.scss';
 
-import { Container, Box, TextField, TextareaAutosize, Button, FormControl, InputLabel } from '@material-ui/core'
+import { Container, Box, TextField, Button, FormControl } from '@material-ui/core'
 
-import { ListItems, ListItemsProps } from './components/list-items'
+import { ListItems } from './components/list-items'
 
 function App() {
   return (
