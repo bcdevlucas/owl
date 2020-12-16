@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 
 import { RootState } from '../../../store';
@@ -28,12 +28,20 @@ export class ListControlsContainer extends Component<ListControlsContainerProps>
         resetListItems: () => {}
     }
 
+    controls: any = null;
+
+    constructor(props: ListControlsContainerProps) {
+        super(props);
+        this.controls = createRef<ListControls>()
+    }
+
+
     handleCreateItems = async () => {
         const { createListItems } = this.props;
         if (createListItems) {
-            createListItems(20);
+            const controls = this.controls.current
+            createListItems(controls.getNumberOfItems());
         }
-        // alert('Generate items');
     }
 
     handleResetItems = async () => {
@@ -41,12 +49,12 @@ export class ListControlsContainer extends Component<ListControlsContainerProps>
         if (resetListItems) {
             resetListItems();
         }
-        // alert('Reset items');
     }
 
     render () {
         return (
             <ListControls
+                ref={this.controls}
                 onGenerateItems={this.handleCreateItems}
                 onReset={this.handleResetItems}
             />
