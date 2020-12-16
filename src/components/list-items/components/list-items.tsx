@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Box } from '@material-ui/core';
 import './list-items.scss';
 
@@ -13,28 +13,32 @@ export interface ListItemsProps {
     items: any[];
 }
 
-export const ListItems = ({
-        onUpdateItem,
-        onRemoveItem,
-        onDragItemStart,
-        onDragItemEnd,
-        items = []
-    }: ListItemsProps) => {
-    const listItems = items.map((item, idx) =>
-        <Box key={idx} m={2}>
-            <ListItem
-                item={item}
-                onUpdate={onUpdateItem}
-                onRemove={onRemoveItem}
-                onDragStart={onDragItemStart}
-                onDragEnd={onDragItemEnd}
-            />
-        </Box>
-    );
+export class ListItems extends Component<ListItemsProps> {
+    render() {
+        const {
+            onUpdateItem,
+            onRemoveItem,
+            onDragItemStart,
+            onDragItemEnd,
+            items = []
+        } = this.props;
 
-    return (
-        <div className='list-items'>
-            {listItems}
-        </div>
-    )
+        const listItems = items.map((item, idx) =>
+            <Box key={idx} m={2}>
+                <ListItem
+                    item={item}
+                    onUpdate={onUpdateItem}
+                    onRemove={onRemoveItem}
+                    onDragStart={onDragItemStart}
+                    onDragEnd={onDragItemEnd}
+                />
+            </Box>
+        );
+
+        return (
+            <div className='list-items'>
+                {listItems}
+            </div>
+        );
+    }
 }

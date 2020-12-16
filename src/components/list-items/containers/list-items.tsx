@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import {Component, createRef} from 'react';
 import { connect } from 'react-redux';
 
 import { RootState } from '../../../store';
@@ -78,7 +78,7 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
                 onDragItemStart={this.handleDragItemStart}
                 onDragItemEnd={this.handleDragItemEnd}
             />
-        )
+        );
     }
 }
 

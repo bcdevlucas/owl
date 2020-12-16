@@ -19,8 +19,9 @@ export interface ListControlsContainerDispatchProps {
 }
 
 export interface ListControlsContainerProps
-    extends ListControlsContainerDispatchProps, ListControlsContainerStateProps {}
-
+    extends ListControlsContainerDispatchProps, ListControlsContainerStateProps {
+    onCreateListItemsCompleted?: () => void;
+}
 
 export class ListControlsContainer extends Component<ListControlsContainerProps> {
     static defaultProps = {
@@ -37,10 +38,13 @@ export class ListControlsContainer extends Component<ListControlsContainerProps>
 
 
     handleCreateItems = async () => {
-        const { createListItems } = this.props;
+        const { createListItems, onCreateListItemsCompleted } = this.props;
         if (createListItems) {
             const controls = this.controls.current
             createListItems(controls.getNumberOfItems());
+            if (onCreateListItemsCompleted) {
+                onCreateListItemsCompleted();
+            }
         }
     }
 
