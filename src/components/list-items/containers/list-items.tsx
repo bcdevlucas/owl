@@ -41,10 +41,11 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
     }
 
     componentDidMount () {
-        const { getListItems } = this.props;
+        // Un-comment this to use generator for local development...
+        /* const { getListItems } = this.props;
         if (getListItems) {
             getListItems();
-        }
+        } */
     }
 
     handleRemoveItem = async (itemKey: string) => {

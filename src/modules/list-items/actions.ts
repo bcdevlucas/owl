@@ -4,6 +4,9 @@ import { ThunkAction } from 'redux-thunk';
 import * as types  from './types';
 import {IListItem} from "./state";
 
+/**
+ * Just a generator for local development.
+ */
 function _getListItems () {
     const count = 5
     const newItems: IListItem[] = []
