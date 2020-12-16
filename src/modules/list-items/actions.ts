@@ -53,7 +53,7 @@ export const getListItems: ActionCreator<
 export const addListItem: ActionCreator<
     ThunkAction<
         Promise<types.IAddListItemAction>, any, null, types.IAddListItemAction>
-    > = ({ item }) => {
+    > = (item) => {
   return async (dispatch: Dispatch) => {
     const addListItemAction: types.IAddListItemAction = {
         type: types.ADD_ITEM,
@@ -67,7 +67,7 @@ export const addListItem: ActionCreator<
 export const updateListItem: ActionCreator<
     ThunkAction<
         Promise<types.IUpdateListItemAction>, any, null, types.IUpdateListItemAction>
-    > = ({ item }) => {
+    > = (item) => {
     return async (dispatch: Dispatch) => {
         const updateListItemAction: types.IUpdateListItemAction = {
             type: types.UPDATE_ITEM,

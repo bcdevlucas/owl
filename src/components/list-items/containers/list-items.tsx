@@ -8,13 +8,12 @@ import { ListItems } from '../components/list-items';
 import {
     getListItems,
     addListItem,
+    updateListItem,
     removeListItem,
     reorderListItem
 } from '../../../modules/list-items/actions';
 
 import { IListItem } from '../../../modules/list-items/state';
-
-
 
 export interface ListItemsContainerStateProps {
     items: any[];
@@ -22,6 +21,7 @@ export interface ListItemsContainerStateProps {
 export interface ListItemsContainerDispatchProps {
     getListItems?: () => void;
     addListItem?: (item: IListItem) => void;
+    updateListItem?: (item: IListItem) => void;
     removeListItem?: (key: string) => void;
     reorderListItem?: (key: string, order: any) => void;
 }
@@ -35,6 +35,7 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
         items: [],
         getListItems: () => [],
         addListItem: () => {},
+        updateListItem: (item: IListItem) => {},
         removeListItem: (key: string) => {},
         reorderListItem: (key: string, order: any) => {}
     }
@@ -53,6 +54,13 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
         }
     }
 
+    handleUpdateItem = async (item: IListItem) => {
+        const { updateListItem } = this.props;
+        if (updateListItem) {
+            updateListItem(item);
+        }
+    }
+
     handleDragItemStart = async (itemKey: string) => {
     }
 
@@ -64,6 +72,7 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
         return (
             <ListItems
                 items={items}
+                onUpdateItem={this.handleUpdateItem}
                 onRemoveItem={this.handleRemoveItem}
                 onDragItemStart={this.handleDragItemStart}
                 onDragItemEnd={this.handleDragItemEnd}
@@ -86,6 +95,7 @@ export default connect<
     {
         getListItems,
         addListItem,
+        updateListItem,
         removeListItem,
         reorderListItem
     }

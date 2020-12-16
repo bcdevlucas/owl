@@ -3,8 +3,10 @@ import { Box } from '@material-ui/core';
 import './list-items.scss';
 
 import { ListItem } from './list-item';
+import { IListItem } from '../../../modules/list-items/state';
 
 export interface ListItemsProps {
+    onUpdateItem: (item: IListItem) => void;
     onRemoveItem: (itemKey: string) => void;
     onDragItemStart: (itemKey: string) => void;
     onDragItemEnd: (itemKey: string) => void;
@@ -12,6 +14,7 @@ export interface ListItemsProps {
 }
 
 export const ListItems = ({
+        onUpdateItem,
         onRemoveItem,
         onDragItemStart,
         onDragItemEnd,
@@ -21,6 +24,7 @@ export const ListItems = ({
         <Box key={idx} m={2}>
             <ListItem
                 item={item}
+                onUpdate={onUpdateItem}
                 onRemove={onRemoveItem}
                 onDragStart={onDragItemStart}
                 onDragEnd={onDragItemEnd}
@@ -29,7 +33,7 @@ export const ListItems = ({
     );
 
     return (
-        <div className="list-items">
+        <div className='list-items'>
             {listItems}
         </div>
     )
