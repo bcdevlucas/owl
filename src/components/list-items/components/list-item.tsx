@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Box, Button, FormControl, TextField } from '@material-ui/core';
-import { IListItem } from '../../../modules/list-items/state'
+import { IListItem } from '../../../modules/list-items/state';
 
 export interface ListItemProps {
     item: IListItem;

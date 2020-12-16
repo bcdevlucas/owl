@@ -1,6 +1,6 @@
-import React from 'react'
-import { Box, List } from '@material-ui/core';
-import './list-items.scss'
+import React from 'react';
+import { Box } from '@material-ui/core';
+import './list-items.scss';
 
 import { ListItem } from './list-item';
 

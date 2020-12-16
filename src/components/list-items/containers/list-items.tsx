@@ -1,16 +1,16 @@
-import { Component } from 'react'
-import { connect } from 'react-redux'
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { RootState } from '../../../store'
+import { RootState } from '../../../store';
 
-import { ListItems } from '../components/list-items'
+import { ListItems } from '../components/list-items';
 
 import {
     getListItems,
     addListItem,
     removeListItem,
     reorderListItem
-} from '../../../modules/list-items/actions'
+} from '../../../modules/list-items/actions';
 
 import { IListItem } from '../../../modules/list-items/state';
 
@@ -42,14 +42,14 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
     componentDidMount () {
         const { getListItems } = this.props;
         if (getListItems) {
-            getListItems()
+            getListItems();
         }
     }
 
     handleRemoveItem = async (itemKey: string) => {
         const { removeListItem } = this.props;
         if (removeListItem) {
-            removeListItem(itemKey)
+            removeListItem(itemKey);
         }
     }
 

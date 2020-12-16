@@ -68,7 +68,6 @@ export const listItemsReducer: Reducer<
       };
     }
     case types.REMOVE_ITEM: {
-      debugger;
       const items = state.items;
       if (!action.key) return { ...state }; // We could throw an error here...
       const item = items.find(item => item.id === action.key)

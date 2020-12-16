@@ -1,14 +1,14 @@
-import { Component } from 'react'
-import { connect } from 'react-redux'
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { RootState } from '../../../store'
+import { RootState } from '../../../store';
 
-import { ListControls } from '../components/list-controls'
+import { ListControls } from '../components/list-controls';
 
 import {
     createListItems,
     resetListItems
-} from '../../../modules/list-items/actions'
+} from '../../../modules/list-items/actions';
 
 export interface ListControlsContainerStateProps {
 }
@@ -31,7 +31,7 @@ export class ListControlsContainer extends Component<ListControlsContainerProps>
     handleCreateItems = async () => {
         const { createListItems } = this.props;
         if (createListItems) {
-            createListItems(20)
+            createListItems(20);
         }
         // alert('Generate items');
     }
@@ -39,7 +39,7 @@ export class ListControlsContainer extends Component<ListControlsContainerProps>
     handleResetItems = async () => {
         const { resetListItems } = this.props;
         if (resetListItems) {
-            resetListItems()
+            resetListItems();
         }
         // alert('Reset items');
     }
