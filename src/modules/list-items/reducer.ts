@@ -3,7 +3,6 @@ import { Reducer } from 'redux';
 import * as types from './types';
 import { ListItemActions } from './actions';
 import { IListItem, IListItemsState, initialListItemsState } from './state';
-import {create} from "domain";
 
 export const listItemsReducer: Reducer<
   IListItemsState,
@@ -26,6 +25,19 @@ export const listItemsReducer: Reducer<
     case types.ADD_ITEM: {
       const items = state.items;
       const stateItems = items.concat([action.item]);
+      return {
+        ...state,
+        // posting: true,
+        items: stateItems
+      };
+    }
+    case types.UPDATE_ITEM: {
+      const items = state.items;
+      if (!action.item.id) return { ...state }; // We could throw an error here...
+      const item = items.find(item => item.id === action.item.id)
+      if (!item) return { ...state }; // We could throw an error here...
+      const stateItems = [...items]
+      stateItems.splice(items.indexOf(item), 1, action.item)
       return {
         ...state,
         // posting: true,
@@ -56,8 +68,17 @@ export const listItemsReducer: Reducer<
       };
     }
     case types.REMOVE_ITEM: {
+      debugger;
+      const items = state.items;
+      if (!action.key) return { ...state }; // We could throw an error here...
+      const item = items.find(item => item.id === action.key)
+      if (!item) return { ...state }; // We could throw an error here...
+      const stateItems = [...items]
+      stateItems.splice(items.indexOf(item), 1)
       return {
-        ...state
+        ...state,
+        // posting: true,
+        items: stateItems
       };
     }
     case types.REORDER_ITEM: {

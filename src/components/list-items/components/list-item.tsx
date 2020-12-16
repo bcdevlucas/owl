@@ -4,12 +4,15 @@ import { IListItem } from '../../../modules/list-items/state'
 
 export interface ListItemProps {
     item: IListItem;
-    onRemove: () => void;
-    onDragStart: () => void;
-    onDragEnd: () => void;
+    onRemove: (itemKey: string) => void;
+    onDragStart: (itemKey: string) => void;
+    onDragEnd: (itemKey: string) => void;
 }
 
-export const ListItem = ({ onRemove = () => {}, item }: ListItemProps) => {
+export const ListItem = ({ onRemove = (itemKey: string) => {}, item }: ListItemProps) => {
+    const removeItem = () => {
+        onRemove(item.id);
+    }
     return (
         <Box
             display="flex"
@@ -41,7 +44,7 @@ export const ListItem = ({ onRemove = () => {}, item }: ListItemProps) => {
                 <Button
                     color="secondary"
                     variant="contained"
-                    onClick={onRemove}>
+                    onClick={removeItem}>
                     x
                 </Button>
             </Box>

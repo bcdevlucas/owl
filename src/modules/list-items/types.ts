@@ -4,6 +4,7 @@ import { IListItem } from './state';
 export const GET_ITEMS = 'getItems';
 export const LOAD_ITEMS = 'loadItems';
 export const ADD_ITEM = 'addItem';
+export const UPDATE_ITEM = 'updateItem';
 export const CREATE_ITEMS = 'createItems';
 export const REMOVE_ITEM = 'removeItem';
 export const REORDER_ITEM = 'reorderItem';
@@ -20,6 +21,11 @@ export interface ILoadListItemsAction extends Action {
 
 export interface IAddListItemAction extends Action {
     type: typeof ADD_ITEM
+    item: IListItem
+}
+
+export interface IUpdateListItemAction extends Action {
+    type: typeof UPDATE_ITEM
     item: IListItem
 }
 

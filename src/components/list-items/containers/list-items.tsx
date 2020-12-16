@@ -42,23 +42,21 @@ export class ListItemsContainer extends Component<ListItemsContainerProps> {
     componentDidMount () {
         const { getListItems } = this.props;
         if (getListItems) {
-            // alert('Get items');
             getListItems()
         }
     }
 
-    handleRemoveItem = async () => {
+    handleRemoveItem = async (itemKey: string) => {
         const { removeListItem } = this.props;
         if (removeListItem) {
-            removeListItem('asdf-test-key')
+            removeListItem(itemKey)
         }
-        alert('Remove item');
     }
 
-    handleDragItemStart = async () => {
+    handleDragItemStart = async (itemKey: string) => {
     }
 
-    handleDragItemEnd = async () => {
+    handleDragItemEnd = async (itemKey: string) => {
     }
 
     render () {

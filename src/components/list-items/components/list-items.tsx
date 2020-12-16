@@ -5,9 +5,9 @@ import './list-items.scss'
 import { ListItem } from './list-item';
 
 export interface ListItemsProps {
-    onRemoveItem: () => void;
-    onDragItemStart: () => void;
-    onDragItemEnd: () => void;
+    onRemoveItem: (itemKey: string) => void;
+    onDragItemStart: (itemKey: string) => void;
+    onDragItemEnd: (itemKey: string) => void;
     items: any[];
 }
 

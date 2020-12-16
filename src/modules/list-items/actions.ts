@@ -21,6 +21,7 @@ export type ListItemActions =
     | types.IGetListItemsAction
     | types.ILoadListItemsAction
     | types.IAddListItemAction
+    | types.IUpdateListItemAction
     | types.ICreateListItemsAction
     | types.IRemoveListItemAction
     | types.IReorderListItemAction
@@ -61,6 +62,20 @@ export const addListItem: ActionCreator<
 
     return dispatch(addListItemAction);
   };
+};
+
+export const updateListItem: ActionCreator<
+    ThunkAction<
+        Promise<types.IUpdateListItemAction>, any, null, types.IUpdateListItemAction>
+    > = ({ item }) => {
+    return async (dispatch: Dispatch) => {
+        const updateListItemAction: types.IUpdateListItemAction = {
+            type: types.UPDATE_ITEM,
+            item: item
+        } as types.IUpdateListItemAction;
+
+        return dispatch(updateListItemAction);
+    };
 };
 
 export const createListItems: ActionCreator<
